@@ -48,7 +48,7 @@ export const block = css`
   flex-direction: row;
   align-items: center;
   & > div {
-    flex: 1;
+    flex: 3;
     padding: 0 25px;
   }
 `;

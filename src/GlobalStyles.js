@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Cantarell:400,400i,700,700i&display=swap');
   html {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Cantarell', sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     margin: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Cantarell', sans-serif;
     background-color: #eff4f7;
   }
   * {
@@ -23,7 +23,7 @@ const GlobalStyles = createGlobalStyle`
   *:after {
     box-sizing: inherit;
   }
-  
+
   @media (max-width: 940px) {
     .mobile-hide {
       display: none;
@@ -37,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
       background-color: #ffffff;
     }
   }
-  
+
   @keyframes fadeout {
     from {
       background-color: #ffffff;
@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
       left: 0;
     }
   }
-  
+
   @keyframes slideout {
     from {
       left: 0;

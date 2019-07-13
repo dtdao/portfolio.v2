@@ -5,8 +5,39 @@ import * as t from '../Typography';
 import Layout, { Content } from '../components/Layout';
 import HireMePopup from '../components/HireMePopup.js';
 import { media } from '../MediaQueries';
-import Img from 'gatsby-image';
+// import Img from 'gatsby-image';  ****MIGHT NEED LATER*****
 import { graphql } from 'gatsby';
+import BackgroundImage from 'gatsby-background-image';
+
+// const BackgroundSection = ({className}) => {
+//   return(
+//
+//   )
+// }
+// <StaticQuery query={graphql`
+//     query{
+//       billboard: file(relativePath: { eq:"IMG-2587.jpg"} ){
+//         childImageSharp{
+//           fluid (quality: 90, maxWidth: 4160) {
+//             ...GatsbyImageSharpFluid_withWebp
+//           }
+//         }
+//       }
+//     }
+//   `}
+//   render={data => {
+//     const imageData = data.billboard.childImageSharp.fluid
+//     return(
+//       <BackgroundImage Tag="section"
+//                        className={className}
+//                        fluid={imageData}
+//                        backgroundColor={`#fff`}
+//                        >
+//                        <h1>Hello</h1>
+//                        </BackgroundImage>
+//     )
+//   }}
+//   />
 
 const AboveFold = styled.div`
   ${Mixins.aboveFoldMixin}
@@ -21,6 +52,22 @@ const AboveFold = styled.div`
   ${media.tablet`background-position: center top 0px;`};
 `;
 
+// const Billboard = styled.div`
+//   overflow: hidden;
+//   .billboard {
+//     max-height: 100vh;
+//     background-attachment: fixed;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     ${media.tablet`
+//       position: relative;
+//       left: 190%;
+//       margin-left: -200%
+//       `}
+//   }
+// `;
+
 const AboutMeWrapper = styled.div`
   ${Mixins.wrapper}
   .m-b-60 {
@@ -28,6 +75,10 @@ const AboutMeWrapper = styled.div`
   }
   ${t.LargeP} {
     margin-bottom: 28px;
+    ${media.phone`
+      font-size: 15px;
+      text-align: left;
+      `}
   }
   .background {
     position: absolute;
@@ -59,6 +110,14 @@ const AboutMeWrapper = styled.div`
   }
 `;
 
+const StyleBackground = styled(BackgroundImage)`
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 class AboutMe extends React.Component {
   state = {
     openHireMePopup: false
@@ -81,18 +140,26 @@ class AboutMe extends React.Component {
     const { data } = this.props;
     return (
       <AboutMeWrapper>
+        <StyleBackground
+          Tag="section"
+          className="billbo"
+          fluid={data.parallaxBillboard.childImageSharp.fluid}
+          backgroundColor={'#fff'}
+        />
         <Layout theme="white" openContactPopup={this.openContactPopup}>
           <AboveFold>
             <t.H1 green align="center">
-              Name Surname - Lorem ipsum
+              Dong Dao
             </t.H1>
             <t.LargeP align="center" max70>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Hi, I'm an American citizen, who was borned in Vietnam to Vietnamese parents, grew up in "Mormonville",
+              USA (AKA UTAH), who eventually travelled half-way around the world to live in Japan. I have been teaching
+              English to Japanese kids and adults for the last 8 years. I eventually made a financially smart and
+              informed decision to move into the tech world. I heard that the was gold to be found in the Internet and I
+              am ready to mine that gold. When not mining that Internet gold you can find me at the gym pumping the iron
+              or quietly enjoying a book with a cup of Kona Coffee.
             </t.LargeP>
           </AboveFold>
-          <Content>
-            <Img fluid={data.avatarAbout.childImageSharp.fluid} alt="Name Surname" className="avatar" />
-          </Content>
         </Layout>
         <HireMePopup open={openHireMePopup} handleClose={this.handleRequestDemoClose} />
       </AboutMeWrapper>
@@ -106,6 +173,16 @@ export const pageQuery = graphql`
   query {
     avatarAbout: file(relativePath: { eq: "avatar.jpg" }) {
       ...fluidImage
+    }
+    billboard: file(relativePath: { eq: "IMG-2587.jpg" }) {
+      ...fluidImage
+    }
+    parallaxBillboard: file(relativePath: { eq: "IMG-2587.jpg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
     }
   }
 `;

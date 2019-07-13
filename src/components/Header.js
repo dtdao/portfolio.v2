@@ -9,14 +9,15 @@ import { withTheme } from 'styled-components';
 import * as t from '../Typography';
 import { lighten, darken } from 'polished';
 import Helmet from 'react-helmet';
-import Avatar from '../images/avatar.jpg'
+import Avatar from '../images/favicon.png';
+import Fade from 'react-reveal/Fade';
 
 const HeaderWrapper = styled.div`
   height: auto;
   max-height: 48px;
   min-height: 16px;
   z-index: 2;
-  position: relative;
+  position: absolute;
   padding: 27px 0;
   position: fixed;
   top: 0;
@@ -28,10 +29,9 @@ const HeaderWrapper = styled.div`
   animation: ${props => (props.scrolled ? 'fadein' : 'fadeout')} 0.5s;
   ${props => props.scrolled && 'box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.1);'}
   ${t.P} {
-    color: ${props => (props.scrolled || props.theme === 'white') && `${Colors.darkest};`}
-      ${media.desktop`
+    color: ${props => (props.scrolled || props.theme === 'white') && `${Colors.darkest};`} ${media.desktop`
         color: ${Colors.white};
-      `}
+      `};
   }
   ${Button} {
     color: ${props => props.scrolled && `${Colors.darkest}`};
@@ -68,13 +68,13 @@ const Logo = styled.a`
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  align-selft: baseline;
+  align-self: baseline;
   img {
     width: 100%;
     transition-duration: 0.4s;
   }
   &:hover img {
-    transform: scale(1.3);
+    transform: scale(0.7);
   }
   ${mediaMin.desktop`
     position: relative;
@@ -97,6 +97,8 @@ const Burger = styled.div`
     ${props => (props.scrolled || props.theme === 'white' ? lighten(0.3, Colors.darkest) : darken(0.1, Colors.white))};
     cursor: pointer;
     opacity: 0.9;
+    color: #48a09b;
+    transition: color 0.3s ease-in-out;
   }
   ${mediaMin.desktop`
     display: none;
@@ -213,7 +215,7 @@ class Header extends React.Component {
         </Helmet>
         <ContentWrapper>
           <Logo href="/">
-            <img src={Avatar} alt="Name Surname" />
+            <img src={Avatar} alt="Dong Dao" />
           </Logo>
           <HeaderNav>
             <Burger alt="Menu" onClick={this.handleBurgerClick} scrolled={scrolled} theme={theme}>
@@ -249,19 +251,18 @@ class Header extends React.Component {
               <Burger onClick={this.handleClose}>
                 <img alt="Close menu" src={Close} />
               </Burger>
-              <li>
-                <Button
-                  theme={theme}
-                  to="about-me"
-                >
-                  About me
-                </Button>
-              </li>
-              <li>
-                <HireMe theme={theme} onClick={this.openContactPopup} book>
-                  Contact me
-                </HireMe>
-              </li>
+              <Fade down>
+                <li>
+                  <Button theme={theme} to="about-me">
+                    About me
+                  </Button>
+                </li>
+                <li>
+                  <HireMe theme={theme} onClick={this.openContactPopup} book>
+                    Contact me
+                  </HireMe>
+                </li>
+              </Fade>
             </MenuList>
           </HeaderNav>
         </ContentWrapper>

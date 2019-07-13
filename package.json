@@ -1,11 +1,18 @@
 {
-  "name": "portfolio-website-gatsby",
+  "name": "dongdaodevdotcom",
   "description": "Portfolio website built in Gatsby",
   "version": "1.0.0",
-  "author": "Milos Lekovic <milos085@gmail.com>",
+  "author": "Dong Dao",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-plugin-styled-components": "^1.8.0",
     "gatsby": "^2.0.40",
+    "gatsby-background-image": "^0.7.4",
+    "gatsby-cli": "^2.7.7",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.7",
     "gatsby-plugin-offline": "^2.0.12",
@@ -21,6 +28,7 @@
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-helmet": "^5.2.0",
+    "react-reveal": "^1.2.2",
     "styled-components": "^4.0.3",
     "styled-props": "^1.1.2"
   },
